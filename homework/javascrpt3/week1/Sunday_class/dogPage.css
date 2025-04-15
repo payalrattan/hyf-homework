@@ -1,0 +1,33 @@
+body{
+    background-color:brown;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+#imagecontainer
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    padding: 10px;
+    
+}
+
+#dogImage
+{
+    height: 50vh;
+    width: 80vh;
+    object-fit: cover;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+#breedName{
+    font-size: 2em;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+    margin-top: 20px;
+    text-transform: capitalize;
+    text-decoration:double;
+    font-weight: bold;}

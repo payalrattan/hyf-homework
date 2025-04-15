@@ -1,0 +1,15 @@
+[{
+"Ordername" : "veg-Burger",
+"Orderid" : 1,
+"Price" : 20,
+"drinks" : "fruit juice",
+"Order extras" : ["cheese, lettuce"]
+},
+
+{
+    "Ordername" : "veg-Pizza",
+    "Orderid" : 2,
+    "Price" : 30,
+    "drinks" : "orange juice",
+    "Order extras" : ["extracheese", "veggies"]
+}]

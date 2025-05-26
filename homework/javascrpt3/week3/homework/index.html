@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screenshot App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    #login-form, #app {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    #preview {
+      width: 100%;
+      margin: 10px 0;
+      display: none;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .screenshot {
+      margin-top: 15px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .screenshot img {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="login-form">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+
+  <div id="app" style="display:none">
+    <h2>Website Screenshot</h2>
+    <input type="text" id="url" placeholder="Enter website URL" />
+    <button id="generate">Generate Screenshot</button>
+    <img id="preview" alt="Screenshot Preview" />
+    <button id="save">Save Screenshot</button>
+
+    <h3>Your Saved Screenshots</h3>
+    <div id="screenshots"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

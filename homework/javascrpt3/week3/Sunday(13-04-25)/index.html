@@ -2,18 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Person Data</title>
 </head>
 <body>
-  <div id="container"></div>
-  <label for="firstName"></label>
-  <input type="text" id="firstName" placeholder="First Name" /><br /><br />
-  <label for="lastName"></label>
-  <input type="text" id="lastName" placeholder="Last Name" /><br /><br />
-  <label for="age"></label>
-  <input type="number" id="age" placeholder="Age" min="17" max="100" /><br /><br />
-  <button id="submit">Submit</button>
-  <script src="api.js"></script>
+  <h1>Send Person Data to API</h1>
+
+  <label>
+    First Name:
+    <input type="text" id="firstName" />
+  </label>
+  <br />
+  <label>
+    Last Name:
+    <input type="text" id="lastName" />
+  </label>
+  <br />
+  <label>
+    Age:
+    <input type="number" id="age" />
+  </label>
+  <br /><br />
+  <button id="submit">Send to API</button>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const submitButton = document.getElementById("submit");
+
+      submitButton.addEventListener("click", async () => {
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const age = parseInt(document.getElementById("age").value, 10);
+
+        if (!firstName || !lastName || isNaN(age)) {
+          alert("Please fill in all fields correctly.");
+          return;
+        }
+
+        const personData = {
+          firstName: firstName,
+          lastName: lastName,
+          age: age,
+        };
+
+        console.log("Sending data to API:", personData);
+
+        try {
+          const response = await fetch(
+            "https://hackyourfuture-etdeezbnfphqfmgv.westeurope-01.azurewebsites.net/person",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(personData),
+            }
+          );
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to send data. Server said: ${errorText}`);
+          }
+
+          const text = await response.text();
+          if (text) {
+            const result = JSON.parse(text);
+            console.log("Success:", result);
+          } else {
+            console.log("Success: No response body");
+          }
+
+          alert("Person data sent successfully!");
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Error sending data. See console for details.");
+        }
+      });
+    });
+  </script>
 </body>
 </html>

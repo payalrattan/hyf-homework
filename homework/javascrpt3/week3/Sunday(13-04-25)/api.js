@@ -27,8 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         console.log("Sending data to API:", personData);
         try {
-            const response = await fetch(
-                "https://hackyourfuture-etdeezbnfphqfmgv.westeurope-01.azurewebsites.net/person",
+            const response = await fetch("https://hackyourfuture-etdeezbnfphqfmgv.westeurope-01.azurewebsites.net/person",
                 {
                     method: "POST",
                     headers: {

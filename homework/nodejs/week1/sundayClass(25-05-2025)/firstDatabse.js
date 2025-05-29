@@ -16,7 +16,7 @@ app.get('/', async (req, res) => {
     const [rows] = await knexInstance.raw('SELECT VERSION()')
 
     res.json({
-        // nodeVersion: process.version,
+         nodeVersion: process.version,
         mysqlVersion: rows[0]['VERSION()']
     })
 })

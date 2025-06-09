@@ -1,15 +1,18 @@
 [
-    {
-        "id": 1,
-        "name": "Used Apple Airpods",
-        "price": "50",
-        "description": "Battery life is not great",
-        "value":"Welcome to the world of Node.js",
-        "type": "doc"
-    },
-    {
-        "id": 2,
-        "type": "doc",
-        "value": "hello world"
-    }
+  {
+    "id": 1,
+    "name": "Used Apple Airpods",
+    "price": "50",
+    "value": "Some value",
+    "description": "Battery life is not great",
+    "type": "doc"
+  },
+  {
+    "id": 5,
+    "name": "laptop",
+    "price": "100",
+    "value": "Random",
+    "description": "A new document",
+    "type": "doc"
+  }
 ]

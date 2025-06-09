@@ -44,6 +44,26 @@ app.get("/documents/:id", (req, res) => {
     }
     res.json(filteredId);
 });
+//add a new object to the documents.json file
+app.post("/documents", (req, res) => {
+    const fields = req.body;
+    if (!fields.id || !fields.name || !fields.price || !fields.value || !fields.description || !fields.type) {
+        return res.status(400).send("Please provide all required fields: id, name, price, value, description, type");
+    }
+    if (data.find(item => item.id === fields.id)) {
+        return res.status(400).json({ Message: "A document with this id already exists" });
+    }
+
+    data.push(fields);
+    console.log(data);
+
+    fs.writeFile('./documents.json', JSON.stringify(data,null,2), (err) => {
+        if (err) {
+            return res.status(500).send("Error writing to file");
+        }
+        res.status(201).json(fields);
+    });
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

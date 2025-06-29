@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import styles from './destination.module.css';
-
 export const AddWishlistItem = ({
   onAddWishlistItem,
 }) => {

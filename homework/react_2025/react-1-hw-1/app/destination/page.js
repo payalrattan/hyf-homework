@@ -41,7 +41,7 @@ export const Destinations = () => {
           ) : (
             <p>You have {numberOfPlanets} in your wishlist</p>
           )}
-          <b>List coming soon after lesson 3!</b>
+
           <AddWishlistItem onAddWishlistItem={handleAddWishlistItem} />
           <h3>Your current wishlist</h3>
           <div className={styles.wishlistList}>

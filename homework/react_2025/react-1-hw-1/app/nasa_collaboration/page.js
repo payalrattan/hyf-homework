@@ -3,37 +3,31 @@ import { useState, useEffect } from 'react';
 import styles from './page.module.css';
 import { RoverPhoto } from '@/app/nasa_collaboration/components/roverPhoto/RoverPhoto';
 import { Astronomy } from "@/app/nasa_collaboration/components/astronomyPic/Astronomy";
-
-const API_KEY = '1wwOvzsGza8Vag6gvcqCzWB1eRyZ86M1nD4j81jv';
-
-const NASA_URLs = {
-  astronomyPicOfTheDay: `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`,
-  marsRoverPhoto: `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=${API_KEY}`,
-};
+import { NASA_URLs } from '@/data/consts/nasa_collaborations/nasa_URLs';
+import {getPhotos} from '@/services/nasaCollaborationServices';
 
 export default function NasaCollaboration() {
   const [dailyImg, setDailyImg] = useState({});
   const [roverPhoto, setRoverPhoto] = useState({});
 
+  const getImgData = async () => {
+    try {
+      const roverPhotoData = await getPhotos();
+      setRoverPhoto(roverPhotoData);
+      // console.log("Rover Photo Data:", roverPhotoData);
+
+      const dailyImgResponse = await fetch(NASA_URLs.astronomyPicOfTheDay);
+      const dailyImgData = await dailyImgResponse.json();
+      setDailyImg(dailyImgData);
+      console.log("Daily Image Data:", dailyImgData);
+
+    } catch (e) {
+      console.log("Error fetching NASA data:", e);
+    }
+  }
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const roverPhotoResponse = await fetch(NASA_URLs.marsRoverPhoto);
-        const roverPhotoData = await roverPhotoResponse.json();
-        setRoverPhoto(roverPhotoData);
-        // console.log("Rover Photo Data:", roverPhotoData);
-
-        const dailyImgResponse = await fetch(NASA_URLs.astronomyPicOfTheDay);
-        const dailyImgData = await dailyImgResponse.json();
-        setDailyImg(dailyImgData);
-        console.log("Daily Image Data:", dailyImgData);
-
-      } catch (e) {
-        console.log("Error fetching NASA data:", e);
-      }
-    };
-
-    fetchData();
+    getImgData();
   }, []);
 
   return (

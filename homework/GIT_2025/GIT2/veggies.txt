@@ -1,5 +1,7 @@
 Carrot
 Potato
-Spinach
+Zucchini
 Broccoli
 Lettuce
+aubergine
+Pumpkin
